@@ -1,0 +1,70 @@
+#!/usr/bin/python3
+
+from kazoo.client import KazooClient
+import argparse
+import re
+import sys
+
+# Parse args
+parser = argparse.ArgumentParser(description="""
+    Remove all childrens started with pattern(regexp is supported too).
+
+
+    USE THIS AT YOUR OWN RISK! THIS SOFTWARE MAY CONTAIN BUGS,
+    AND MAY DESTROY YOUR DATA AND KILL YOUR PARENTS,
+    EVEN IF USED CORRECTLY. YOU HAVE BEEN WARNED!
+    """)
+parser.add_argument('--zk', help='Zookeeper hosts: node1:2181,node2:2181',
+                    default='localhost:2181')
+parser.add_argument('--path', help='Zookeeper path: /my/path/to',
+                    default='/THIS_PATH_IS_NOT_EXISTS')
+parser.add_argument('--child', help='Zookeeper child name start pattern: hell')
+parser.add_argument('--regex', help='PCRE expression')
+args = parser.parse_args()
+
+
+def prepare_args():
+    path = args.path
+
+    # Remove / from path
+    if re.match('.+(/)$', path):
+        path = path[:-1]
+
+    # prepare regex
+    regex = None
+    if args.regex is not None:
+        regex = re.compile(args.regex)
+
+    return path, regex
+
+
+def remove(child):
+    node = path + '/' + child
+    if regex is not None:
+        if regex.match(child):
+            rmr(node, child)
+    else:
+        if child.startswith(args.child):
+            rmr(node, child)
+
+
+def rmr(node, child):
+    print('Found ' + child)
+    print('Delete ' + node)
+    try:
+        zk.delete(node)
+    except Exception as e:
+        print(str(e))
+        sys.exit(2)
+
+
+zk = KazooClient(hosts=args.zk)
+zk.start()
+
+path, regex = prepare_args()
+
+# Do it
+for child in zk.get_children(path):
+    remove(child)
+
+zk.stop()
