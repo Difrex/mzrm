@@ -64,7 +64,10 @@ zk.start()
 path, regex = prepare_args()
 
 # Do it
-for child in zk.get_children(path):
-    remove(child)
+try:
+    for child in zk.get_children(path):
+        remove(child)
+except:
+    print('E: path ' + path + ' is not found')
 
 zk.stop()
