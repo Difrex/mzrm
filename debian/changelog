@@ -1,0 +1,18 @@
+mzrm (0.2.1) testing; urgency=medium
+
+  * Check path
+
+ -- Denis Zheleztsov <difrex@bingo-boom.ru>  Sun, 09 Oct 2016 01:00:39 +0300
+
+mzrm (0.2) testing; urgency=medium
+
+  * PCRE regex support
+  * Some refactoring
+
+ -- Denis Zheleztsov <difrex@bingo-boom.ru>  Sun, 09 Oct 2016 00:50:38 +0300
+
+mzrm (0.1-1) testing; urgency=low
+
+  * Initial release
+
+ -- Denis Zheleztsov <difrex@bingo-boom.ru>  Sat, 08 Oct 2016 00:13:29 +0300

@@ -1,0 +1,12 @@
+Source: mzrm
+Section: admin
+Priority: optional
+Maintainer: Denis Zheleztsov <difrex.punk@gmail.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+
+Package: mzrm
+Architecture: all
+Depends: python3-kazoo
+Description: Remove all childrens started with pattern(regexp is supported too)
+ !!! DO AT YOU OWN RISK !!!
