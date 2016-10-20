@@ -1,14 +1,13 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: mzrm
-Source: <url://example.com>
+Source: https://github.com/Difrex/mzrm
 
 Files: *
-Copyright: <years> <put author's name and email here>
-           <years> <likewise for another author>
-License: GPL-3.0+
+Copyright: 2016 Denis Zheleztsov <dofrex.punk@gmail.com>
+License: BSD
 
 Files: debian/*
-Copyright: 2016 Denis Zheleztsov <difrex@bingo-boom.ru>
+Copyright: 2016 Denis Zheleztsov <difrex.punk@gmail.com>
 License: GPL-3.0+
 
 License: GPL-3.0+
